@@ -24,6 +24,9 @@
                 <td>@car.Model</td>
                 <td>
                     <a class="btn btn-danger" asp-action="DeleteCar" asp-controller="Home" asp-route-id="@car.Id">Delete</a>
+                    <a class="btn btn-secondary" asp-action="UpdateCar" asp-controller="Home" asp-route-id="@car.Id">Update</a>
+
+
                 </td>
             </tr>
         }

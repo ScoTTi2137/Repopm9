@@ -40,6 +40,7 @@ namespace podstawy3g2.Controllers
         [HttpPost]
         public IActionResult AddCar(Car car)
         {
+            car.Id = car.NextId();
             Car.cars.Add(car);
             return RedirectToAction("Index", "Home");
         }
@@ -49,6 +50,25 @@ namespace podstawy3g2.Controllers
             if(car != null)
                 Car.cars.Remove(car);
             return RedirectToAction("Index", "Home");
+        }
+        public IActionResult UpdateCar(int id)
+        {
+            Car car = Car.cars.FirstOrDefault(x => x.Id == id);
+            if (car != null)
+                return View(car);
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpPost]
+        public IActionResult UpdateCar(int id, Car car)
+        {
+            Car updateCar = Car.cars.FirstOrDefault(x => x.Id == car.Id);
+            if (updateCar != null)
+            {
+                updateCar.Brand = car.Brand;
+                updateCar.Model = car.Model;
+            }
+
+            return RedirectToAction("Index", "Home");   
         }
 
         public IActionResult Privacy()
