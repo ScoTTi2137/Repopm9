@@ -1,0 +1,32 @@
+﻿@model List<Car>
+
+@{
+    ViewData["Title"] = "Car list";
+}
+
+<div>
+    @* <p>
+        @Model.Brand<br />
+        @Model.Model
+    </p> *@
+
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Brand</th>
+            <th>Model</th>
+        </tr>
+        @foreach(Car car in Model)
+        {
+            <tr>
+                <td>@car.Id</td>
+                <td>@car.Brand</td>
+                <td>@car.Model</td>
+                <td>
+                    <a class="btn btn-danger" asp-action="DeleteCar" asp-controller="Home" asp-route-id="@car.Id">Delete</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
