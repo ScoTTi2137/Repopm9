@@ -6,9 +6,10 @@
     <form asp-action="Index">
         <div class="col-8">
             <select name="EngId" class="form-control">
+                <option value="0">wszystkie silniki</option>
                 @foreach (Engine engine in @ViewBag.EngineList)
                 {
-                    if(engine.Id == @ViewBag.EngId)
+                    if (engine.Id == @ViewBag.EngId)
                     {
                         <option value="@engine.Id" selected>@engine.Name</option>
                     }
@@ -28,7 +29,10 @@
     <table class="table">
         <tr>
             <th>Id</th>
-            <th>Brand</th>
+            <th>Brand
+                <a class="btn btn-primary" asp-action="Index" asp-route-sort="up">/\</a>
+                <a class="btn btn-primary" asp-action="Index" asp-route-sort="down">\/</a>
+            </th>
             <th>Model</th>
             <th>[Akcje]</th>
         </tr>
@@ -51,7 +55,5 @@
                 </td>
             </tr>
         }
-        <a class="btn btn-dark" asp-action="ShowCar"
-           asp-controller="Home">Show</a>
     </table>
 </div>
