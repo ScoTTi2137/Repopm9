@@ -6,6 +6,9 @@
         public int Id { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
+        public int EngineId { get; set; }
+        public Engine Engine { get; set; }
+
         public Car() { }
         public Car(string brand, string model)
         {
@@ -15,7 +18,10 @@
         }
         public int NextId()
         {
-            return cars.Count == 0 ? 1 : cars.Max(x => x.Id) + 1;
+            if (Car.cars.Count == 0)
+                return 1;
+            else
+                return Car.cars.Max(car => car.Id) + 1;
         }
     }
 }

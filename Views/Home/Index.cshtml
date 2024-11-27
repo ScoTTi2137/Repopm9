@@ -1,20 +1,36 @@
 ﻿@model List<Car>
-
 @{
     ViewData["Title"] = "Car list";
 }
-
+<div class="row">
+    <form asp-action="Index">
+        <div class="col-8">
+            <select name="EngId" class="form-control">
+                @foreach (Engine engine in @ViewBag.EngineList)
+                {
+                    if(engine.Id == @ViewBag.EngId)
+                    {
+                        <option value="@engine.Id" selected>@engine.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@engine.Id">@engine.Name</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-4">
+            <input type="submit" value="Filtruj" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
 <div>
-    @* <p>
-        @Model.Brand<br />
-        @Model.Model
-    </p> *@
-
     <table class="table">
         <tr>
             <th>Id</th>
             <th>Brand</th>
             <th>Model</th>
+            <th>[Akcje]</th>
         </tr>
         @foreach(Car car in Model)
         {
@@ -23,13 +39,19 @@
                 <td>@car.Brand</td>
                 <td>@car.Model</td>
                 <td>
-                    <a class="btn btn-danger" asp-action="DeleteCar" asp-controller="Home" asp-route-id="@car.Id">Delete</a>
-                    <a class="btn btn-secondary" asp-action="UpdateCar" asp-controller="Home" asp-route-id="@car.Id">Update</a>
-
-
+                    <a class="btn btn-danger" asp-action="DeleteCar" 
+                       asp-controller="Home" 
+                       asp-route-id="@car.Id">Delete</a>
+                    <a class="btn btn-secondary" asp-action="UpdateCar"
+                       asp-controller="Home"
+                       asp-route-id="@car.Id">Update</a>
+                    <a class="btn btn-secondary" asp-action="Details"
+                       asp-controller="Home"
+                       asp-route-id="@car.Id">Details</a>
                 </td>
             </tr>
         }
-
+        <a class="btn btn-dark" asp-action="ShowCar"
+           asp-controller="Home">Show</a>
     </table>
 </div>

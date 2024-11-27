@@ -1,0 +1,19 @@
+﻿@model Car
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Marka</th>
+        <th>Model</th>
+        <th>Silnik</th>
+    </tr>
+    <tr>
+        <td>@Model.Id</td>
+        <td>@Model.Brand</td>
+        <td>@Model.Model</td>
+        <td>@Model.Engine</td>
+    </tr>
+</table>
+
+<a class="btn btn-secondary" asp-action="Index" asp-controller="Home">Back to List</a>
+

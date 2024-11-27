@@ -1,0 +1,22 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "ShowCar";
+}
+
+<h1>Car Brands with Selected Engine</h1>
+
+@foreach (var brand in Model)
+{
+    <p>@brand</p>
+}
+
+<div>
+    <h4>Select Engine</h4>
+    @foreach (Engine engine in ViewBag.EngineList)
+    {
+        <a class="btn btn-danger" asp-action="ShowCar"
+           asp-controller="Home"
+           asp-route-engId="@engine.Id">@engine.Name</a>
+    }
+</div>
